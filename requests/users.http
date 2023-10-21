@@ -1,0 +1,28 @@
+@url = http://localhost:4000/users
+
+GET {{url}}
+
+###
+#GET {{url}}/1
+###
+POST {{url}}
+Content-Type: application/json
+
+{
+    "Nombres": "Carlos",
+    "Correo": "cmarroquin@miumg.edu.gt",
+    "Contraseña": "ffsdfd"
+}
+
+###
+#PUT {{url}}/1
+#Content-Type: application/json
+
+#{
+ #   "name": "Marco",
+   # "pass": "Cambie mi contrase;a",
+    #"email": "mvaldeza2@miumg.edu.gt"
+#}
+
+###
+#DELETE {{url}}/2
