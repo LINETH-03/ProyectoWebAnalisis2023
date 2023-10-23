@@ -3,26 +3,28 @@
 GET {{url}}
 
 ###
-#GET {{url}}/1
+GET {{url}}/17
 ###
 POST {{url}}
 Content-Type: application/json
 
 {
-    "Nombres": "Carlos",
+    "Nombres": "Jorje",
     "Correo": "cmarroquin@miumg.edu.gt",
-    "Contraseña": "ffsdfd"
+    "Contraseña": "ffsdfd",
+    "Estado": "ACTIVO"
 }
 
 ###
-#PUT {{url}}/1
-#Content-Type: application/json
+PUT {{url}}/17
+Content-Type: application/json
 
-#{
- #   "name": "Marco",
-   # "pass": "Cambie mi contrase;a",
-    #"email": "mvaldeza2@miumg.edu.gt"
-#}
+{
+    "Nombres": "ramazini",
+    "Correo": "cmauin@miumg.edu.gt",
+    "Contraseña": "ffd",
+    "Estado": "Activo"
+}
 
 ###
-#DELETE {{url}}/2
+DELETE {{url}}/2
