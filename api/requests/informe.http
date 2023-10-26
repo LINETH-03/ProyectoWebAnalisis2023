@@ -1,0 +1,6 @@
+@ur = http://localhost:4000/informe
+
+GET {{ur}}
+
+###
+GET {{ur}}/4

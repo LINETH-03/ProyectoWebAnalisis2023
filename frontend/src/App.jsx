@@ -1,8 +1,8 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {Layout} from './Pages/Layout'
 import {Users} from './Pages/Users'
-import { Teachers } from './Pages/Teachers'
+ 
 import "./App.css"
 function App() {
  
