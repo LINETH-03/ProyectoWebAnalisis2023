@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import {Layout} from './Pages/Layout'
 import {Users} from './Pages/Users'
- 
+
+import {Login} from './Pages/Login'
 import "./App.css"
 function App() {
  
@@ -11,15 +12,15 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route index path="/Login" element={<Login />} />
           <Route path="/" element={<Layout />}>
             <Route index path="/Users" element={<Users />} />
-            <Route index path="/Informe" element={<Teachers />} />
-            
-            <Route path="*" 
+        
+          </Route>
+          <Route path="*" 
               element={<>
                 <h2>No encontramos la pagina</h2>
               </>} />
-          </Route>
 
         </Routes>
       </BrowserRouter>

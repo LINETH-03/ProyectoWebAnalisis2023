@@ -1,4 +1,4 @@
-@ur = http://localhost:4000/informe
+@ur = http://localhost:8080/informe
 
 GET {{ur}}
 

@@ -11,6 +11,7 @@ export const Layout =()=>{
             <NavLink to="/Teachers">
                 Profesores
             </NavLink>
+            
             <Outlet/>
         </div>
     )

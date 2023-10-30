@@ -1,20 +1,20 @@
-# Usar una imagen base con Node.js
-FROM node:latest
+FROM node:18.15.0 as build-stage
 
-# Establecer el directorio de trabajo en el contenedor
-WORKDIR /app
-
-# Copiar los archivos necesarios al contenedor
-COPY ./frontend/package.json ./frontend/package-lock.json ./
-
-# Instalar las dependencias
+WORKDIR /frontend
+COPY package.json .
 RUN npm install
+COPY . .
 
-# Copiar el resto de los archivos
-COPY ./frontend .
+ARG REACT_APP_API_BASE_URL
+ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
-# Exponer el puerto en el que el servidor de desarrollo de React va a estar escuchando  
-EXPOSE 5173
+RUN npm run build
 
-# Comando para iniciar el servidor de desarrollo de React usando Vite
-CMD ["npm", "run", "dev"]
+# Stage 2
+FROM nginx:1.17.0-alpine
+
+COPY --from=build-stage /frontend/dist /usr/share/nginx/html
+
+EXPOSE $REACT_DOCKER_PORT
+
+CMD nginx -g 'daemon off;'

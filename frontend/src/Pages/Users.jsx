@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 
 
+
 export const Users = () => {
 
   const ENDPOINT = "http://localhost:4000/users";
@@ -9,7 +10,7 @@ export const Users = () => {
   const dialogRef = useRef(null)
   const dialogDeleteRef = useRef(null)
   const [currentUser, setCurrentUser] = useState({
-    IdUsuario: 0,
+    id: 0,
     email: '',
     name: '',
     pass: '',
@@ -22,7 +23,7 @@ export const Users = () => {
   }
   useEffect(() => {
     //useEffect vacio, significa que lo va ejecutar cuando se cargue el componente en memoria.
-    (async () => {
+    ;(async () => {
         await getAll()
     })()
   }, [])
@@ -216,3 +217,4 @@ export const Users = () => {
     </>
   )
 }
+

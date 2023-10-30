@@ -4,32 +4,54 @@ services:
   mssql:
     container_name: sql-server
     image: mcr.microsoft.com/mssql/server:2017-latest
-    restart: always
+    restart: unless-stopped
+    env_file: ./.env
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "1234"
+      SA_PASSWORD: "1234567"
     ports:
-      - 1433:1433
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - my-volume:/var/opt/mssql
+    networks:
+      - back
+
 
   api:
-    build:
-      context: .
-      dockerfile: api/Dockerfile
-    ports:
-      - "4000:4000"
     depends_on:
       - mssql
+    build: ./api
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=mssql
+      - DB_USER=$MYSQLDB_USER
+      - DB_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - DB_NAME=$MYSQLDB_DATABASE
+      - DB_PORT=$MYSQLDB_DOCKER_PORT
+      - CLIENT_ORIGIN=$CLIENT_ORIGIN
+    networks:
+      - back
+      - front
 
   frontend:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    ports:
-      - "5173:5173"
     depends_on:
       - api
+    build:
+      context: ./frontend
+      args:
+        - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
+    ports:
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+    networks:
+      - front
 
 volumes:
   my-volume:
+
+
+networks:
+  back:
+  front:
