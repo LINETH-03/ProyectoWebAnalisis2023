@@ -8,8 +8,8 @@ export const Layout =()=>{
                 Usuarios
             </NavLink>
             
-            <NavLink to="/Teachers">
-                Profesores
+            <NavLink to="/login">
+                Login
             </NavLink>
             
             <Outlet/>

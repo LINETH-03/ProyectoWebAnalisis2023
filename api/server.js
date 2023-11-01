@@ -1,4 +1,4 @@
-require("dotenv").config();
+/*require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = require("./app")
@@ -20,5 +20,11 @@ var corsOptions = {
 
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, ()=>{
+    console.log("Server running in port 8080")
+})*/
+
+const app = require("./app")
+
+app.listen(8080, ()=>{
     console.log("Server running in port 8080")
 })

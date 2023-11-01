@@ -10,7 +10,7 @@ router.get('/', async (req, res, next)=> {
     //Abrimos la conexion
     await sql.connect(config)
     //ejecutamos la consulta
-    const resultado = await sql.query("SELECT IdUsuario, Nombres, Correo, Contraseña, Estado FROM CrearUsuario")
+    const resultado = await sql.query("SELECT IdUsuario, Nombres, Correo, pass, Estado FROM CrearUsuario")
     data = resultado.recordset
     //await sql.close()
 
@@ -33,10 +33,10 @@ router.post("/", async (req, res, next)=>{
                               .request()
                               .input("Nombres", sql.VarChar, user.Nombres)
                               .input("Correo", sql.VarChar, user.Correo)
-                              .input("Contraseña", sql.VarChar, user.Contraseña)
+                              .input("pass", sql.VarChar, user.pass)
                               .input("Estado", sql.VarChar, user.Estado)
                             
-                              .query("INSERT INTO CrearUsuario(Nombres, Correo, Contraseña, Estado) VALUES (@Nombres,@Correo,@Contraseña,@Estado)")
+                              .query("INSERT INTO CrearUsuario(Nombres, Correo, pass, Estado) VALUES (@Nombres, @Correo, @pass, @Estado)")
     resultado = result.rowsAffected
     //await connection.close()                          
   }
@@ -57,7 +57,7 @@ router.get('/:IdUsuario', async (req, res, next)=> {
     //ejecutamos la consulta
     const resultado = await connection.request()
                         .input("IdUsuario", sql.Int, req.params.IdUsuario)
-                        .query("SELECT IdUsuario, Nombres, Correo, Contraseña, Estado FROM CrearUsuario WHERE IdUsuario = @IdUsuario")
+                        .query("SELECT IdUsuario, Nombres, Correo, pass, Estado FROM CrearUsuario WHERE IdUsuario = @IdUsuario")
     data = resultado.recordset[0]
     //await sql.close()
 
@@ -72,7 +72,7 @@ router.get('/:IdUsuario', async (req, res, next)=> {
 
 router.put('/:IdUsuario', async (req, res, next)=> {
   let data = {}
-  let {Nombres,Correo,Contraseña,Estado} = req.body
+  let {Nombres,Correo,pass,Estado} = req.body
   //user.name, user.pass, user.email
   try{
     //Abrimos la conexion
@@ -80,16 +80,16 @@ router.put('/:IdUsuario', async (req, res, next)=> {
     //ejecutamos la consulta
     const resultado = await connection.request()
                         .input("IdUsuario", sql.Int, req.params.IdUsuario)
-                        .query("SELECT IdUsuario, Nombres, Correo, Contraseña, Estado FROM CrearUsuario WHERE  IdUsuario = @IdUsuario")
+                        .query("SELECT IdUsuario, Nombres, Correo, pass, Estado FROM CrearUsuario WHERE  IdUsuario = @IdUsuario")
     if (resultado.recordset.length > 0){
       const result = await connection
       .request()
       .input("Nombres", sql.VarChar,Nombres)
       .input("Correo", sql.VarChar,Correo)
-      .input("Contraseña", sql.VarChar,Contraseña)
+      .input("pass", sql.VarChar,pass)
       .input("IdUsuario", sql.Int, req.params.IdUsuario)
       .input("Estado", sql.VarChar,Estado)
-      .query("UPDATE CrearUsuario SET Nombres = @Nombres, Correo = @Correo, Contraseña = @Contraseña, Estado = @Estado WHERE IdUsuario = @IdUsuario")
+      .query("UPDATE CrearUsuario SET Nombres = @Nombres, Correo = @Correo, pass = @pass, Estado = @Estado WHERE IdUsuario = @IdUsuario")
        data = result.rowsAffected
     }
     //await sql.close()

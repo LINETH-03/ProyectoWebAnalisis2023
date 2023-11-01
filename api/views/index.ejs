@@ -12,8 +12,8 @@
       <input type="text" name="Nombres"/>
       <label>Correo</label>
       <input type="text" name="Correo"/>
-      <label>Contraseña</label>
-      <input type="text" name="Contraseña"/>
+      <label>pass</label>
+      <input type="text" name="pass"/>
       <label>Estado</label>
       <input type="text" name="Estado"/>
       <input type="submit" value="Guardar"/>
@@ -36,7 +36,7 @@
                               <td>IdUsuario</td>
                               <td>Nombres</td>
                               <td>Correo</td>
-                              <td>Contraseña</td>
+                              <td>pass</td>
                               <td>Estado</td>
                            </tr>
                       </thead>
@@ -90,7 +90,7 @@
         body: JSON.stringify({
           Nombres: formValues.get("Nombres"),
           Correo: formValues.get("Correo"),
-          Contraseña: formValues.get("Contraseña"),
+          pass: formValues.get("pass"),
           Estado: formValues.get("Estado")
         })
       })

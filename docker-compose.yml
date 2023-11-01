@@ -8,9 +8,10 @@ services:
     env_file: ./.env
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "1234567"
+      SA_PASSWORD: "PAS$WORD123"
     ports:
-      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+      - "1433:1433"
+   
     volumes:
       - my-volume:/var/opt/mssql
     networks:

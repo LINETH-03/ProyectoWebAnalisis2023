@@ -4,16 +4,17 @@ import { useEffect, useState, useRef } from 'react'
 
 export const Users = () => {
 
-  const ENDPOINT = "http://localhost:4000/users";
+  const ENDPOINT = "http://localhost:8080/users";
 
   const [users, setUsers] = useState([])
   const dialogRef = useRef(null)
   const dialogDeleteRef = useRef(null)
   const [currentUser, setCurrentUser] = useState({
-    id: 0,
-    email: '',
-    name: '',
+    IdUsuario: 0,
+    Nombres: '',
+    Correo: '',
     pass: '',
+    Estado: '',
   })
 
   const getAll =async ()=>{
@@ -23,7 +24,7 @@ export const Users = () => {
   }
   useEffect(() => {
     //useEffect vacio, significa que lo va ejecutar cuando se cargue el componente en memoria.
-    ;(async () => {
+    (async () => {
         await getAll()
     })()
   }, [])
@@ -47,7 +48,7 @@ export const Users = () => {
 
   const formSubmit = async (e) =>{
     e.preventDefault()
-    if (currentUser.id <= 0){
+    if (currentUser.IdUsuario <= 0){
       //Create
       await postData(currentUser)
     }
@@ -55,10 +56,11 @@ export const Users = () => {
       await updateData(currentUser)
     }
     setCurrentUser({
-      id: 0,
-      email: '',
-      name: '',
+      IdUsuario: 0,
+      Nombres: '',
+      Correo: '',
       pass: '',
+      Estado: '',
     })
     dialogRef.current.close()
   }
@@ -77,7 +79,7 @@ export const Users = () => {
 
 
   const updateData = async (data)=>{
-    let fetchResp = await fetch(ENDPOINT + "/" + data.id, {
+    let fetchResp = await fetch(ENDPOINT + "/" + data.IdUsuario, {
       method: "PUT",
       headers: {
           "Content-Type": "application/json"
@@ -94,7 +96,7 @@ export const Users = () => {
   }
 
   const deleteData = async (row) =>{
-    let fetchResp = await fetch(ENDPOINT + "/" + row.id, {
+    let fetchResp = await fetch(ENDPOINT + "/" + row.IdUsuario, {
       method: "DELETE",
       headers: {
           "Content-Type": "application/json"
@@ -114,30 +116,33 @@ export const Users = () => {
     setCurrentUser(row)
     dialogRef.current.showModal()
   }
+
+
+  
   return (
     <>
       <dialog ref={dialogRef}>
         <h4>Nuevo usuario</h4>
         <form onSubmit={formSubmit} className="w3-container">
-          <label htmlFor="name">Nombre</label>
+          <label htmlFor="Nombres">Nombres</label>
           <input
             type="text"
-            id="name"
-            name="name"
+            id="Nombres"
+            name="Nombres"
             className="w3-input"
-            value={currentUser.name}
+            value={currentUser.Nombres}
             onChange={valueHasChanged}
           />
-          <label htmlFor="email">Email</label>
+          <label htmlFor="Correo">Correo</label>
           <input
             type="text"
-            id="email"
-            name="email"
+            id="Correo"
+            name="Correo"
             className="w3-input"
-            value={currentUser.email}
+            value={currentUser.Correo}
             onChange={valueHasChanged}
           />
-          <label htmlFor="pass">Contrasenia</label>
+          <label htmlFor="pass">Contraseña</label>
           <input
             type="password"
             id="pass"
@@ -146,12 +151,12 @@ export const Users = () => {
             value={currentUser.pass}
             onChange={valueHasChanged}
           />
-          <label htmlFor='status'>Estado</label>
+          <label htmlFor='Estado'>Estado</label>
           <select
            className='w3-select'
-           name="status"
-           id="status"
-           value={currentUser.status}
+           name="Estado"
+           id="Estado"
+           value={currentUser.Estado}
            onChange={valueHasChanged}
           >
             <option>Seleccione</option>
@@ -174,19 +179,20 @@ export const Users = () => {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Email</th>
             <th>Nombre</th>
+            <th>Correo</th>
+
             <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           {users.map((row) => (
-            <tr key={'user' + row.id} style={{backgroundColor: row.status === "I" ? "olive": ""}}>
-              <td>{row.id}</td>
-              <td>{row.email}</td>
-              <td>{row.name}</td>
-              <td>{row.status}</td>
+            <tr key={'user' + row.IdUsuario} style={{backgroundColor: row.Estado === "I" ? "olive": ""}}>
+              <td>{row.IdUsuario}</td>
+              <td>{row.Nombres}</td>
+              <td>{row.Correo}</td>
+              <td>{row.Estado}</td>
               <td>
                 <button className="w3-button w3-yellow" onClick={(e)=> { showEdit(row) }}>Editar</button>
                 <button className="w3-button w3-red" onClick={(e)=> {deleteRow(row)}}>Borrar</button>
@@ -200,7 +206,7 @@ export const Users = () => {
         <h4>Confirmación de borrado</h4>
         <form onSubmit={confirmDelete} className="w3-container">
            
-            Esta seguro que desea eliminar a {currentUser.name}
+            Esta seguro que desea eliminar a {currentUser.Nombres}
             <div className='w3-row'>
               <div className='w3-col m6'>
                 <button className="w3-button w3-red" type="submit">Confirmar</button>

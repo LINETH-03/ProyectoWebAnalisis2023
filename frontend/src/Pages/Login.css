@@ -1,0 +1,48 @@
+/* styles.css */
+/* styles.css (o el nombre que hayas dado a tu archivo CSS) */
+
+/* Estilos para el contenedor principal */
+.w3-cell-row {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    height: 100vh;
+  }
+  
+  /* Estilos para el formulario */
+  .w3-container {
+    background-color: #000000;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    max-width: 4000px;
+    width: 100%;
+  }
+  
+  /* Estilos para los inputs y labels */
+  .w3-input {
+    width: calc(80% - 20px);
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #954d4d;
+    border-radius: 5px;
+  }
+  
+  /* Estilos para el botón */
+  .w3-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .w3-button:hover {
+    background-color: #2060a3;
+  }
+  

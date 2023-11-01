@@ -9,9 +9,9 @@ POST {{url}}
 Content-Type: application/json
 
 {
-    "Nombres": "Jorje",
+    "Nombres": "Carlos",
     "Correo": "cmarroquin@miumg.edu.gt",
-    "Contraseña": "ffsdfd",
+    "pass": "123",
     "Estado": "ACTIVO"
 }
 

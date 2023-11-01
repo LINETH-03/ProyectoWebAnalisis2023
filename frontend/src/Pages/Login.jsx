@@ -1,15 +1,11 @@
 import { useState } from 'react'
-import { API_ENDPOINT } from '../config/consts'
-import {useNavigate} from 'react-router-dom'
-import { toast } from 'react-toastify';
+//import './Login.css' // Importa tu archivo CSS
+
 export const Login = () => {
-
-  const navigate = useNavigate();
-
-  const [user, setUser] = useState({
-    email: '',
+const [user, setUser] = useState({
+    Correo: '',
     pass: '',
-  })
+ })
 
   
   const valueHasChanged = (e) => {
@@ -19,32 +15,8 @@ export const Login = () => {
     })
   }
 
-  const loginClick = async (e) =>{
+  const loginClick = async(e)=>{
     e.preventDefault()
-    try{
-      let response = await fetch(API_ENDPOINT + "/auth/login", {
-        method: "POST",
-       
-        credentials:'include',
-        headers: {
-          "content-type": "application/json"
-        },
-        body: JSON.stringify(user)
-      })
-      let parsedResponse = await response.json()
-      if (parsedResponse.id){
-        sessionStorage.setItem('logged_user', JSON.stringify(parsedResponse))
-        navigate("/Users")
-      }
-      else{
-        toast.error(parsedResponse.message)
-      }
-    }
-    
-    catch(err){
-      console.log(err)
-      toast.error(err)
-    }
   }
   return (
     <main className="w3-cell-row w3-margin-top">
@@ -54,17 +26,17 @@ export const Login = () => {
         <form className="w3-container w3-margin-top w3-margin-bottom "
               onSubmit={loginClick}
         >
-            <h4>Ingreso al Sistema UMG</h4>
-          <label htmlFor="email">Correo electrónico</label>
+            <h4>Ingreso a Gestor de Fiananzas</h4>
+          <label htmlFor="Correo">Correo electrónico</label>
           <input
             type="text"
-            id="email"
-            name="email"
+            id="Correo"
+            name="Correo"
             className="w3-input"
-            value={user.email}
+            value={user.Correo}
             onChange={valueHasChanged}
           />
-          <label htmlFor="email">Password</label>
+          <label htmlFor="pass">Contrasenia</label>
           <input
             type="password"
             id="pass"
