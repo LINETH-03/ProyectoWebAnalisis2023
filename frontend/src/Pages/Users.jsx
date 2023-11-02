@@ -174,7 +174,7 @@ export const Users = () => {
         </form>
       </dialog>
       <button onClick={newUserClick} >Nuevo usuario</button>
-      <h1>Users</h1>
+      <h1>Mantenimiento de usuarios</h1>
       <table className="w3-table w3-striped w3-bordered w3-border">
         <thead>
           <tr>
