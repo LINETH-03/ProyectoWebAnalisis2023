@@ -1,0 +1,22 @@
+.contenedor {
+    display: flex;
+    flex-direction: row; /* Esto alinea los elementos horizontalmente */
+    justify-content: space-around; /* Esto distribuye el espacio horizontalmente entre los elementos */
+    margin-top: 20px;
+  }
+  
+.mini-contenedor {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .mini-contenedor img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  

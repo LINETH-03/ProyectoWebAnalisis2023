@@ -8,9 +8,10 @@ export const Layout =()=>{
                 Usuarios
             </NavLink>
             
-            <NavLink to="/login">
+            <NavLink to="/Login">
                 Login
             </NavLink>
+           
             
             <Outlet/>
         </div>

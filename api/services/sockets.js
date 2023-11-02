@@ -1,23 +1,21 @@
-const { Server } = require('socket.io')
-let io
-exports.socketConnection = (server) => {
-  io = new Server(server, {
-    cors: {
-      origin: process.env.FRONTEND_DOMAIN,
-      methods: '*',
-    },
-  })
+const express = require('express');
+const http = require('http');
+const socketIo = require('socket.io');
 
-  io.on('connection', (socket) => {
-    console.info(`Client connected [id=${socket.id}]`)
-    socket.join(socket.request._query.id)
-    socket.on('disconnect', () => {
-      console.info(`Client disconnected [id=${socket.id}]`)
-    })
-  })
-}
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 
-exports.sendMessage = (roomId, key, message) => io.to(roomId).emit(key, message)
-exports.broadcast = (key, message) => io.sockets.emit(key, message)
+io.on('connection', (socket) => {
+  console.log('Nuevo cliente conectado');
 
-exports.getRooms = () => io.sockets.adapter.rooms
+  socket.on('stream', (dataUrl) => {
+    // Maneja los datos del video recibidos del cliente
+    // Puedes emitir los datos a otros clientes si es necesario
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Cliente desconectado');
+  });
+});
+

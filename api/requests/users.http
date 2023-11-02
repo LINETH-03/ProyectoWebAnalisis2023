@@ -1,29 +1,37 @@
-@url = http://localhost:8080/users
+@url = http://localhost:8080
 
-GET {{url}}
+GET {{url}}/users
+###
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "Correo": "cddd@miumg.edu.gt",
+    "pass": "123"
+}
 
 ###
 GET {{url}}/17
 ###
-POST {{url}}
+POST {{url}}/users
 Content-Type: application/json
 
 {
-    "Nombres": "Carlos",
-    "Correo": "cmarroquin@miumg.edu.gt",
+    "Nombres": "randal",
+    "Correo": "cddd@miumg.edu.gt",
     "pass": "123",
-    "Estado": "ACTIVO"
+    "Estado": "A"
 }
 
 ###
-PUT {{url}}/17
+PUT {{url}}/30
 Content-Type: application/json
 
 {
-    "Nombres": "ramazini",
+    "Nombres": "ramazinccci",
     "Correo": "cmauin@miumg.edu.gt",
-    "Contraseña": "ffd",
-    "Estado": "Activo"
+    "pass": "12347",
+    "Estado": "A"
 }
 
 ###

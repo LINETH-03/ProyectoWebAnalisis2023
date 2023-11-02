@@ -70,6 +70,42 @@ router.get('/:IdUsuario', async (req, res, next)=> {
   res.send(data)
 });
 
+/*router.post("/", async (req, res, next) => {
+  const user = req.body;
+
+  // Validación de campos obligatorios
+  if (!user.Nombres || !user.Correo || !user.pass || !user.Estado) {
+    return res.status(400).json({ success: false, message: 'Todos los campos son obligatorios' });
+  }
+
+  // Limpiar espacios en blanco alrededor de los valores
+  const cleanedUser = {
+    Nombres: user.Nombres.trim(),
+    Correo: user.Correo.trim(),
+    pass: user.pass.trim(),
+    Estado: user.Estado.trim()
+  };
+
+  try {
+    let connection = await sql.connect(config);
+
+    const result = await connection
+      .request()
+      .input("Nombres", sql.VarChar, cleanedUser.Nombres)
+      .input("Correo", sql.VarChar, cleanedUser.Correo)
+      .input("pass", sql.VarChar, cleanedUser.pass)
+      .input("Estado", sql.VarChar, cleanedUser.Estado)
+      .query("INSERT INTO CrearUsuario(Nombres, Correo, pass, Estado) VALUES (@Nombres, @Correo, @pass, @Estado)");
+
+    // Resto del código...
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
+*/
+
 router.put('/:IdUsuario', async (req, res, next)=> {
   let data = {}
   let {Nombres,Correo,pass,Estado} = req.body
