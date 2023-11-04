@@ -12,7 +12,8 @@ Content-Type: application/json
     "Correo": "randal@miumg.edu.gt",
     "pass": "123"
 }
-
+###
+GET {{url}}/auth/userId
 ###
 GET {{url}}/17
 ###

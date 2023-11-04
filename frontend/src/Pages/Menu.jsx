@@ -31,12 +31,12 @@ export const Menu = () => {
       <div className="contenedor">
         <MiniContenedor 
           imagenUrl="https://cdn-icons-png.flaticon.com/512/10106/10106041.png" 
-          linkTo="/Users" 
+          linkTo="/Ingresosmant" 
           texto="Ingresos" 
         />
         <MiniContenedor 
           imagenUrl="https://img.freepik.com/vector-gratis/concepto-bancarrota-diseno-dibujado-mano_23-2148500971.jpg?w=360" 
-          linkTo="/Users" 
+          linkTo="/Egresos" 
           texto="Egresos" 
         />
         

@@ -18,9 +18,12 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
 app.set("view engine", "ejs")
-
+var corsOptions = {
+  origin: process.env.FRONTEND_DOMAIN,
+  credentials: true
+}
 //Middlewares.
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
