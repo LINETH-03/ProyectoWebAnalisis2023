@@ -1,9 +1,8 @@
-
-const config = {
-    server: "DESKTOP-4BHOIVB",
-    user: "sa",
-    password:"1234567",
-    database: "BDAnalisis_Sistemas",
+require('dotenv').config();const config = {
+    server: process.env.SERVER,
+    user: process.env.DB_USER,
+    password:process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 
     /*server: "DESKTOP-1JFS3GR",
     user: "proyecto",

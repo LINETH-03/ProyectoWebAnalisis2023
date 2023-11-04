@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import { API_ENDPOINT } from '../config/consts'
 export const Login = () => {
   const history = useNavigate();
 
@@ -20,7 +20,7 @@ export const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/auth/login', { // Modifica esta línea
+      const response = await fetch(API_ENDPOINT+"/auth/login", { // Modifica esta línea
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

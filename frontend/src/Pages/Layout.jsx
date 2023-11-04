@@ -4,15 +4,15 @@ export const Layout =()=>{
 
     return(
         <div>
-            <NavLink to="/Users">
-                Usuarios
+        <div class="w3-bar w3-indigo">
+            <NavLink className="w3-bar-item w3-button" to="/Users">
+                Mantenimiento
             </NavLink>
-            
-            <NavLink to="/Login">
-                Login
+            <NavLink  className="w3-bar-item w3-button" to="/Login">
+                Inicio de sesion
             </NavLink>
            
-            
+        </div>  
             <Outlet/>
         </div>
     )

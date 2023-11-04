@@ -2,11 +2,14 @@
 
 GET {{url}}/users
 ###
+
+GET {{url}}/auth/rutaProtegida
+###
 POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-    "Correo": "cddd@miumg.edu.gt",
+    "Correo": "randal@miumg.edu.gt",
     "pass": "123"
 }
 
